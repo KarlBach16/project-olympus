@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_enemy_script"]
+[ext_resource type="Texture2D" path="res://sprites/cyclops_boss.png" id="2_cyclops_boss"]
+[ext_resource type="PackedScene" path="res://scenes/XPOrb.tscn" id="3_xp_orb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_boss"]
+radius = 55.0
+
+[node name="CyclopsBoss" type="CharacterBody2D" groups=["enemy", "boss"]]
+script = ExtResource("1_enemy_script")
+speed = 55.0
+max_health = 40
+xp_orb_scene = ExtResource("3_xp_orb")
+contact_damage = 2
+contact_range = 86.0
+damage_interval = 0.9
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cyclops_boss")
+scale = Vector2(0.16, 0.16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 26)
+shape = SubResource("CircleShape2D_boss")

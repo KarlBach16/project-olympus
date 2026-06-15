@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_enemy_script"]
+[ext_resource type="Texture2D" path="res://sprites/cyclops.png" id="2_cyclops"]
+[ext_resource type="PackedScene" path="res://scenes/XPOrb.tscn" id="3_xp_orb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enemy"]
+radius = 28.0
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_enemy_script")
+speed = 70.0
+xp_orb_scene = ExtResource("3_xp_orb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cyclops")
+scale = Vector2(0.08, 0.08)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 18)
+shape = SubResource("CircleShape2D_enemy")

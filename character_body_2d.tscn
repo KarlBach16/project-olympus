@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dmexiyxrrxjb4"]
+
+[ext_resource type="Script" uid="uid://m0qen7fc8xhy" path="res://character_body_2d.gd" id="1_f50pn"]
+
+[node name="Player" type="CharacterBody2D" unique_id=1018356167]
+script = ExtResource("1_f50pn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1426579361]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=251251135]
+offset_right = 40.0
+offset_bottom = 40.0
