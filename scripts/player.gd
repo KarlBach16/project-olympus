@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	if attack_timer == 0.0:
 		attack_nearest_enemy()
 
-func update_walk_animation(direction: Vector2, delta: float) -> void:
+func update_walk_animation(direction: Vector2, _delta: float) -> void:
 	if walk_frame_1 == null or walk_frame_2 == null:
 		return
 
@@ -69,17 +69,9 @@ func update_walk_animation(direction: Vector2, delta: float) -> void:
 	elif direction.x < 0.0:
 		facing_right = false
 
-	sprite.flip_h = not facing_right
+	sprite.flip_h = false
 
-	if direction == Vector2.ZERO:
-		walk_animation_time = 0.0
-		sprite.texture = walk_frame_1
-		return
-
-	walk_animation_time += delta * walk_animation_speed
-	var frame_index := int(walk_animation_time) % 2
-
-	if frame_index == 0:
+	if facing_right:
 		sprite.texture = walk_frame_1
 	else:
 		sprite.texture = walk_frame_2
