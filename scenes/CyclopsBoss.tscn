@@ -15,6 +15,7 @@ xp_orb_scene = ExtResource("3_xp_orb")
 contact_damage = 2
 contact_range = 86.0
 damage_interval = 0.9
+flip_with_movement = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cyclops_boss")

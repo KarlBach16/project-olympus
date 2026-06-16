@@ -10,6 +10,8 @@ signal killed(enemy: Node)
 @export var damage_interval: float = 0.7
 @export var hover_amplitude: float = 0.0
 @export var hover_speed: float = 0.0
+@export var flip_with_movement := false
+@export var faces_right_by_default := true
 
 var player: Node2D
 var current_health: int
@@ -28,6 +30,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	var direction := global_position.direction_to(player.global_position)
+	update_sprite_direction(direction)
 	velocity = direction * speed
 	move_and_slide()
 
@@ -40,6 +43,15 @@ func _physics_process(delta: float) -> void:
 	if hover_amplitude > 0.0:
 		hover_time += delta
 		sprite.position = sprite_start_position + Vector2(0.0, sin(hover_time * hover_speed) * hover_amplitude)
+
+func update_sprite_direction(direction: Vector2) -> void:
+	if not flip_with_movement or abs(direction.x) < 0.01:
+		return
+
+	if faces_right_by_default:
+		sprite.flip_h = direction.x < 0.0
+	else:
+		sprite.flip_h = direction.x > 0.0
 
 func take_damage(amount: int) -> void:
 	current_health = max(current_health - amount, 0)
