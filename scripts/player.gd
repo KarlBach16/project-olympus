@@ -14,6 +14,8 @@ signal died
 @export var walk_frame_2: Texture2D
 @export var walk_animation_speed: float = 5.0
 
+var facing_right := true
+
 var current_health: int
 var level := 1
 var current_xp := 0
@@ -61,6 +63,13 @@ func _physics_process(delta: float) -> void:
 func update_walk_animation(direction: Vector2, delta: float) -> void:
 	if walk_frame_1 == null or walk_frame_2 == null:
 		return
+
+	if direction.x > 0.0:
+		facing_right = true
+	elif direction.x < 0.0:
+		facing_right = false
+
+	sprite.flip_h = not facing_right
 
 	if direction == Vector2.ZERO:
 		walk_animation_time = 0.0
